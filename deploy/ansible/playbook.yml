@@ -1,0 +1,92 @@
+---
+- name: Setup Server
+  hosts: server
+  become: true
+
+  tasks:
+    - name: Install Java 8 (OpenJDK)
+      yum:
+        name: java-1.8.0-amazon-corretto.x86_64 
+        state: present
+        update_cache: true
+
+    - name: Créer un répertoire pour l'application
+      file:
+        path: /opt/calcserver
+        state: directory
+        mode: '0755'
+
+    - name: Copy Server file
+      copy:
+        src: ./src/calcserver.jar
+        dest: /opt/calcserver/calcserver.jar
+
+    - name: Copy Client file
+      copy: 
+        src: ./src/calcclient.jar
+        dest: /opt/calcserver/calcclient.jar
+
+    - name: Créer un répertoire pour CLIF
+      file:
+        path: ~/clif-server-3.0.4-SNAPSHOT
+        state: directory
+        mode: '0755'
+
+    - name: Copy CLIF
+      synchronize:
+        src: ./src/clif-server-3.0.4-SNAPSHOT/
+        dest: ~/clif-server-3.0.4-SNAPSHOT/
+
+    # - name: Add CLIF to PATH
+    #   shell:
+        
+
+    - name: Créer un répertoire pour les fichiers de test
+      file:
+        path: /opt/calcserver/tests
+        state: directory
+        mode: '0755'
+
+    - name: Copy Tests Files
+      synchronize:
+        src: ../../calctest/
+        dest: /opt/calcserver/tests/
+
+    - name: Create systemd service for calcserver program
+      copy:
+        dest: /etc/systemd/system/calcserver.service
+        content: |
+          [Unit]
+          Description=Calc Server
+          After=network.target
+
+          [Service]
+          ExecStart=/usr/bin/java -jar /opt/calcserver/calcserver.jar 5432
+          WorkingDirectory=/opt/calcserver
+          Restart=always
+          User=root
+
+          [Install]
+          WantedBy=multi-user.target
+
+    - name: Recharger systemd pour prendre en compte le nouveau service
+      command: systemctl daemon-reload
+
+    - name: Activer le service pour qu'il démarre au démarrage du système
+      systemd:
+        name: calcserver
+        enabled: yes
+
+    - name: Démarrer le service calcserver
+      systemd:
+        name: calcserver
+        state: started
+
+    - name: Vérifier que le service est bien en cours d'exécution
+      command: systemctl status calcserver
+      register: service_status
+      ignore_errors: true
+
+    - name: Afficher le statut du service
+      debug:
+        msg: "{{ service_status.stdout_lines }}"

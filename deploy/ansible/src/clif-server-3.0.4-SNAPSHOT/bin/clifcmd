@@ -1,0 +1,121 @@
+#!/bin/sh
+CLIFDIR=$(dirname "$0")
+CLIFDIR="$CLIFDIR/.."
+if test ! -r ./paclif.opts
+then
+	cp "$CLIFDIR/etc/paclif.opts" .
+fi
+CLIF_OPTS=$(grep -ve ^#.* paclif.opts | tr '\n' ' ' | tr -d '\r')	
+
+usage()
+{
+	cmd=$(basename "$0")
+	printf "usage: \"$cmd <command>\", where <command> is one of the following:\n"
+	printf "analyze\n\tRun the graphical reporting tool (\"swing\" distribution only)\n"
+	printf "change testplan_name id param_name param_value\n\tChange an injector or probe parameter value\n"
+	printf "collect testplan_name [id1:id2:...idN]\n\tCollect measurements from a test run when it is terminated\n"
+	printf "config [registry_host[:registry_port] [codeserver_host[:codeserver_port]]]\n\tUpdate CLIF configuration file\n"
+	printf "deploy testplan_name testplan_file\n\tDeploy a test plan\n"
+	printf "gui\n\tRun the graphical console (\"swing\" distribution only)\n"
+	printf "help\n\tPrint this help message\n"
+	printf "init testplan_name testrun_id\n\tInitialize a new test run\n"
+	printf "join testplan_name [id1:id2:...idN]\n\tWait for the end of current test run\n"
+	printf "launch testplan_name testplan_file testrun_id\n\tDeploy and run a test plan, then collect measurements\n"
+	printf "listservers [test plan file names...]\n\tEither print the list of CLIF servers currently registered in the registry, or the list of CLIF servers used by some test plans\n"
+	printf "schedlaunch testplan_name testplan_file testrun_id [proactive workflow file]\n\tDeploy and run a test plan using ProActive Workflows and Scheduling, then collect measurements\n"
+	printf "params testplan_name id\n\tPrint an injector or probe's parameters list\n"
+	printf "probehelp probe_type\n\tPrint some help for a given probe type\n"
+	printf "quickstats [report_directory]\n\tPrint an array of response time statistics about the last test run\n"
+	printf "registry\n\tRun the CLIF/Fractal registry\n"
+	printf "resume testplan_name [id1:id2:...idN]\n\tResume a test run\n"
+	printf "run testplan_name testrun_id [id1:id2:...idN]\n\tInitialize and start a new test run, then collect measurements\n"
+	printf "server [name]\n\tRun a CLIF server\n"
+	printf "start testplan_name [id1:id2:...idN]\n\tStart a test run\n"
+	printf "stop testplan_name [id1:id2:...idN]\n\tStop a test run\n"
+	printf "suspend testplan_name [id1:id2:...idN]\n\tSuspend a test run\n"
+	printf "version\n\tPrint version information about CLIF and Java runtime\n"
+	printf "waitservers [testplan_file]\n\tWait for CLIF registry and, optionally, all required CLIF servers to be ready\n"
+}
+
+case $1 in
+	analyze )
+		JAVACMD=org.ow2.clif.analyze.lib.graph.AnalyzerImpl
+		;;
+	change )
+		JAVACMD=org.ow2.clif.console.lib.batch.ChangeParameterCmd
+		;;
+	collect )
+		JAVACMD=org.ow2.clif.console.lib.batch.CollectCmd
+		;;
+	config )
+		JAVACMD="org.ow2.clif.util.ConfigFileManager paclif.opts"
+		;;
+	deploy )
+		JAVACMD=org.ow2.clif.console.lib.batch.DeployCmd
+		;;
+	gui )
+		JAVACMD=org.ow2.clif.console.lib.gui.GuiConsoleImpl
+		;;
+	help )
+		usage "$0"
+		exit 0
+		;;
+	init )
+		JAVACMD=org.ow2.clif.console.lib.batch.InitCmd
+		;;
+	join )
+		JAVACMD=org.ow2.clif.console.lib.batch.JoinCmd
+		;;
+	launch )
+		JAVACMD=org.ow2.clif.console.lib.batch.LaunchCmd
+		;;
+	listservers )
+		JAVACMD=org.ow2.clif.console.lib.batch.ListServersCmd
+		;;
+	schedlaunch )
+		JAVACMD=org.ow2.clif.console.lib.batch.LaunchWithSchedulerCmd
+		;;
+	params )
+		JAVACMD=org.ow2.clif.console.lib.batch.CurrentParametersCmd
+		;;
+	probehelp )
+		JAVACMD=org.ow2.clif.console.lib.batch.ProbeHelpCmd
+		;;
+	quickstats )
+		JAVACMD=org.ow2.clif.console.lib.batch.QuickstatsCmd
+		;;
+	registry )
+		JAVACMD="-Dproactive.pnp.port=1234 org.ow2.clif.console.lib.batch.RegistryCmd"
+		;;
+	resume )
+		JAVACMD=org.ow2.clif.console.lib.batch.ResumeCmd
+		;;
+	run )
+		JAVACMD=org.ow2.clif.console.lib.batch.RunCmd
+		;;
+	server )
+		JAVACMD=org.ow2.clif.server.lib.ClifServerImpl
+		;;
+	start )
+		JAVACMD=org.ow2.clif.console.lib.batch.StartCmd
+		;;
+	stop )
+		JAVACMD=org.ow2.clif.console.lib.batch.StopCmd
+		;;
+	suspend )
+		JAVACMD=org.ow2.clif.console.lib.batch.SuspendCmd
+		;;
+	version )
+		uname -svrm
+		java -version
+		JAVACMD=org.ow2.clif.util.Version
+		;;
+	waitservers )
+		JAVACMD=org.ow2.clif.console.lib.batch.WaitServersCmd
+		;;
+	* )
+		usage "$0"
+		exit 1
+esac
+shift
+exec java -cp "$CLIFDIR/lib/*:$CLIFDIR/lib/ext/*:$CLIFDIR/etc" $CLIF_OPTS $JAVA_OPTS -Dfractal.provider=org.objectweb.proactive.core.component.Fractive -Djava.library.path="$CLIFDIR/lib/sigar" -Djava.security.policy="$CLIFDIR/etc/java.policy" $JAVACMD "$@"

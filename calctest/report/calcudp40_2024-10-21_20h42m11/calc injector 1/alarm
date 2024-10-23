@@ -1,0 +1,11 @@
+# date, severity, argument
+2690,1,Can't create UDPinjector session object
+2692,1,Can't create UDPinjector session object
+2694,1,Can't create UDPinjector session object
+2711,1,Can't bind UDPinjector
+2711,1,Can't create UDPinjector session object
+2711,1,Can't create UDPinjector session object
+2714,1,Can't create UDPinjector session object
+2714,3,java.lang.Error: Exception in thread Timer 0
+2716,3,java.lang.Error: Exception in thread ISAC execution thread 22
+2716,3,java.lang.Error: Exception in thread ISAC execution thread 16

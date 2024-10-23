@@ -1,0 +1,89 @@
+# date, severity, argument
+2686,1,Can't create UDPinjector session object
+2691,1,Can't create UDPinjector session object
+2693,1,Can't get variable operation from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+2694,1,Can't get variable operation from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+2709,1,Can't create UDPinjector session object
+2709,1,Virtual user 21 is more than 14ms late
+2709,1,Can't create UDPinjector session object
+2709,1,Virtual user 25 is more than 17ms late
+2709,1,Can't create UDPinjector session object
+2710,1,Can't create UDPinjector session object
+2715,1,Can't create UDPinjector session object
+2715,1,Can't create UDPinjector session object
+2715,1,Can't get variable result from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+2716,1,Can't get variable result from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+2721,1,Can't bind UDPinjector
+2722,1,Can't get variable operation from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+2722,1,Can't get variable operation from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+2741,1,Can't get variable result from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+2741,1,Can't get variable result from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+7718,1,Can't get variable operation from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+7719,1,Can't get variable operation from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+7744,1,Can't get variable result from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+7745,1,Can't get variable result from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+12723,1,Virtual user 29 is more than 4955ms late
+12724,1,UDPInjector can't reset session object.
+12724,1,Virtual user 18 is more than 5581ms late
+12725,1,Virtual user 15 is more than 5929ms late
+12725,1,Virtual user 16 is more than 5632ms late
+12725,1,UDPInjector can't reset session object.
+12726,1,Virtual user 12 is more than 6267ms late
+12726,1,UDPInjector can't reset session object.
+12727,1,UDPInjector can't reset session object.
+12727,1,Virtual user 11 is more than 6214ms late
+12727,1,Virtual user 13 is more than 6164ms late
+12727,1,Virtual user 14 is more than 5381ms late
+12727,1,Virtual user 17 is more than 5834ms late
+12727,1,Virtual user 20 is more than 5479ms late
+12727,1,Virtual user 6 is more than 6367ms late
+12728,1,Virtual user 10 is more than 6523ms late
+12728,1,UDPInjector can't reset session object.
+12728,1,Virtual user 9 is more than 6478ms late
+12728,1,UDPInjector can't reset session object.
+12729,1,UDPInjector can't reset session object.
+12729,1,Virtual user 7 is more than 6774ms late
+12729,1,UDPInjector can't reset session object.
+12729,1,Virtual user 8 is more than 6675ms late
+12730,1,Virtual user 4 is more than 7077ms late
+12730,1,UDPInjector can't reset session object.
+12730,1,Virtual user 22 is more than 5279ms late
+12730,1,UDPInjector can't reset session object.
+12731,1,Virtual user 1 is more than 7282ms late
+12731,1,UDPInjector can't reset session object.
+12732,1,UDPInjector can't reset session object.
+12732,1,Virtual user 28 is more than 9954ms late
+12733,1,UDPInjector can't reset session object.
+12733,1,Virtual user 27 is more than 9962ms late
+12734,1,UDPInjector can't reset session object.
+12734,1,Virtual user 3 is more than 7133ms late
+12734,1,Virtual user 25 is more than 9992ms late
+12735,3,java.lang.Error: Exception in thread ISAC execution thread 3
+12736,1,Virtual user 31 is more than 13ms late
+12736,1,Virtual user 5 is more than 6930ms late
+12736,1,UDPInjector can't reset session object.
+12736,1,Virtual user 32 is more than 15ms late
+12736,1,UDPInjector can't reset session object.
+12737,1,UDPInjector can't reset session object.
+12737,1,Virtual user 15 is more than 12ms late
+12737,1,Virtual user 16 is more than 12ms late
+12737,1,Virtual user 33 is more than 12ms late
+12737,1,Virtual user 31 is more than 14ms late
+12737,1,Virtual user 33 is more than 12ms late
+12738,1,Virtual user 33 is more than 13ms late
+12738,1,Virtual user 34 is more than 13ms late
+12738,1,Virtual user 34 is more than 13ms late
+12738,1,Virtual user 34 is more than 13ms late
+12739,1,Virtual user 11 is more than 12ms late
+12739,1,UDPInjector can't reset session object.
+12739,1,Virtual user 35 is more than 13ms late
+12739,1,Virtual user 35 is more than 13ms late
+12740,1,Can't create UDPinjector session object
+12740,1,Virtual user 13 is more than 13ms late
+12740,1,Virtual user 17 is more than 13ms late
+12740,1,Can't get variable operation from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+12740,1,Can't bind UDPinjector
+12740,1,Virtual user 36 is more than 13ms late
+12740,1,Can't get variable operation from plug-in CsvProvider for file "calcudp.csv": missing initial call to control "next".
+12745,3,java.lang.Error: Exception in thread Timer 0
+12753,3,java.lang.Error: Exception in thread ISAC execution thread 16

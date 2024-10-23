@@ -1,0 +1,43 @@
+clif.parameters \
+-Djava.security.policy=etc/java.policy \
+-Djava.util.logging.config.file=etc/javalog.props \
+-Dfractal.provider=org.objectweb.proactive.core.component.Fractive \
+-Dfractal.registry.host=localhost \
+-Dfractal.registry.port=1234 \
+-Dclif.globaltime=false \
+-Dclif.codeserver.port=1357 \
+-Dclif.codeserver.host=localhost \
+-Dclif.codeserver.path=. \
+-Dclif.filestorage.delay_s=60 \
+-Dclif.filestorage.maxpending=1000 \
+-Dclif.filestorage.host=localhost \
+-Dclif.filestorage.clean=none \
+-Dclif.isac.threads=100 \
+-Dclif.isac.groupperiod=100 \
+-Dclif.isac.schedulerperiod=100 \
+-Dclif.isac.jobdelay=-1 \
+-Dclif.eclipse.statdir=stats \
+-Xms128m -Xmx256m \
+-server
+
+# other possible properties and options
+# * change the default target directory for storing all measures
+# -Dclif.filestorage.dir="my_report_directory"
+# * for remote JVM debugging/profiling:
+# -agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n
+# * to force use of a specific IP address or subnet when collecting test results
+# with filestorage storage component:
+# -Dclif.filestorage.host=192.168.1.11
+# or:
+# -Dclif.filestorage.host=192.168.0.0/16
+# * to force use of a specific IP address or subnet for Fractal RMI (CLIF registry, servers):
+# -Djonathan.connectionfactory.host=192.168.1.11
+# or:
+# -Djonathan.connectionfactory.host=192.168.0.0/16
+# * for certificates management with SSL (e.g. for https testing):
+# -Djavax.net.ssl.trustStore=/path/to/keystore
+# -Djavax.net.ssl.trustStorePassword=the_keystore_password
+# * default code server classpath
+# -Dclif.codeserver.path="examples/classes/"
+
+registry.server.classname org.objectweb.fractal.rmi.registry.Registry

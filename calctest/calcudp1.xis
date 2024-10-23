@@ -1,0 +1,135 @@
+<!DOCTYPE scenario SYSTEM "classpath:org/ow2/clif/scenario/isac/dtd/scenario.dtd">
+<scenario>
+	<behaviors>
+		<plugins>
+			<use id="client" name="UdpInjector">
+				<params>
+					<param name="charset" value="ASCII"></param>
+					<param name="unit" value="microsecond"></param>
+				</params>
+			</use>
+			<use id="timer" name="ConstantTimer">
+				<params>
+					<param name="duration_arg" value="50"></param>
+				</params>
+			</use>
+			<use id="checker" name="StringHandler">
+				<params>
+					<param name="default" value=""></param>
+				</params>
+			</use>
+			<use id="ctxt" name="Context">
+				<params>
+					<param name="variables" value=""></param>
+					<param name="files" value="calcudp.props;"></param>
+				</params>
+			</use>
+			<use id="common" name="Common">
+			</use>
+			<use id="data" name="CsvProvider">
+				<params>
+					<param name="filename" value="calcudp.csv"></param>
+					<param name="separator" value="="></param>
+					<param name="macintosh_line_separator" value=""></param>
+					<param name="shared" value=""></param>
+					<param name="loop" value="enable;"></param>
+					<param name="fields" value="operation=result"></param>
+					<param name="comment" value=""></param>
+					<param name="bigfile" value=""></param>
+				</params>
+			</use>
+		</plugins>
+		<behavior id="calc clients">
+			<control use="client" name="bind">
+				<params>
+					<param name="host" value="0.0.0.0"></param>
+					<param name="port" value="0"></param>
+				</params>
+			</control>
+			<sample use="client" name="connect">
+				<params>
+					<param name="host" value="${ctxt:host}"></param>
+					<param name="port" value="${ctxt:port}"></param>
+				</params>
+			</sample>
+			<control use="client" name="setTimeOut">
+				<params>
+					<param name="timeout" value="5000"></param>
+				</params>
+			</control>
+			<control use="client" name="setRcvBufSize">
+				<params>
+					<param name="size" value="1024"></param>
+				</params>
+			</control>
+			<while>
+				<condition use="common" name="true"></condition>
+				<timer use="timer" name="period_begin">
+				</timer>
+				<control use="data" name="next">
+				</control>
+				<sample use="client" name="send">
+					<params>
+						<param name="data" value="${data:operation}"></param>
+						<param name="comment" value="${data:operation}"></param>
+					</params>
+				</sample>
+				<sample use="client" name="receive">
+					<params>
+						<param name="variable" value="result"></param>
+						<param name="comment" value=""></param>
+					</params>
+				</sample>
+				<if>
+					<condition use="client" name="isDefined">
+						<params>
+							<param name="variable" value="result"></param>
+						</params>
+					</condition>
+					<then>
+						<control use="checker" name="set">
+							<params>
+								<param name="value" value="=${data:result}"></param>
+							</params>
+						</control>
+						<if>
+							<condition use="checker" name="containsNot">
+								<params>
+									<param name="search" value="${client:result}"></param>
+								</params>
+							</condition>
+							<then>
+								<sample use="common" name="log">
+									<params>
+										<param name="duration" value="0"></param>
+										<param name="comment" value="bad result (expected ${data:result})"></param>
+										<param name="result" value="${client:result}"></param>
+										<param name="successful" value="no"></param>
+										<param name="iteration" value="0"></param>
+									</params>
+								</sample>
+							</then>
+						</if>
+					</then>
+				</if>
+				<timer use="timer" name="period_end">
+					<params>
+						<param name="period_arg" value=""></param>
+					</params>
+				</timer>
+			</while>
+			<control use="client" name="close">
+			</control>
+		</behavior>
+	</behaviors>
+	<loadprofile>
+		<group behavior="calc clients" forceStop="true">
+			<ramp style="line">
+				<points>
+					<point x="0" y="1"></point>
+					<point x="60" y="1"></point>
+				</points>
+			</ramp>
+		</group>
+	</loadprofile>
+</scenario>

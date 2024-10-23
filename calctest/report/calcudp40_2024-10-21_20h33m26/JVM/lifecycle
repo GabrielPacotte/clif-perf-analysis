@@ -1,0 +1,6 @@
+# date, state id, state label
+2,3,initializing
+3,4,initialized
+80,6,running
+80,5,starting
+64080,10,completed

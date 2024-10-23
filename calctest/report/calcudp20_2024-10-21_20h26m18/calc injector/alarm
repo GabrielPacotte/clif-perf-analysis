@@ -1,0 +1,5 @@
+# date, severity, argument
+1566,1,Virtual user 0 is more than 13ms late
+1566,1,Virtual user 9 is more than 15ms late
+1566,1,Virtual user 12 is more than 13ms late
+1567,1,Virtual user 13 is more than 13ms late

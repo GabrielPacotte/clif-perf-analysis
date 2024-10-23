@@ -1,0 +1,30 @@
+-Dclif.codeserver.path=.
+-Dclif.codeserver.port=1357
+-Dclif.filestorage.clean=none
+-Dclif.filestorage.delay_s=60
+-Dclif.filestorage.maxpending=1000
+-Dclif.globaltime=false
+-Dclif.isac.groupperiod=100
+-Dclif.isac.jobdelay=10
+-Dclif.isac.schedulerperiod=5
+-Dclif.isac.threads=50
+-Dclif.eclipse.statdir=stats
+-Dorg.ops4j.pax.logging.DefaultServiceLog.level=WARN
+-Dproactive.communication.protocol=pnp
+-Dproactive.useIPaddress=true
+-Dfractal.registry.host=localhost
+-Dfractal.registry.port=1234
+-Dswing.defaultlaf=javax.swing.plaf.nimbus.NimbusLookAndFeel
+-Xms128m
+-Xmx256m
+-server
+# other possible properties and options
+# * change the default target directory for storing all measures
+# -Dclif.filestorage.dir="my_report_directory"
+# * for remote JVM debugging/profiling:
+# -agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n
+# * for certificates management with SSL (e.g. for https testing):
+# -Djavax.net.ssl.trustStore=/path/to/keystore
+# -Djavax.net.ssl.trustStorePassword=the_keystore_password
+# * default code server classpath
+# -Dclif.codeserver.path="examples/classes/"

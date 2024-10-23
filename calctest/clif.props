@@ -1,0 +1,21 @@
+clif.parameters \
+-Dclif.codeserver.path=calctest \
+-Dclif.codeserver.port=1357 \
+-Dclif.codeserver.shared=false \
+-Dclif.eclipse.statdir=calctest/stats \
+-Dclif.filestorage.delay_s=60 \
+-Dclif.filestorage.dir=calctest/report \
+-Dclif.filestorage.maxpending=1000 \
+-Dclif.globaltime=false \
+-Dclif.isac.groupperiod=100 \
+-Dclif.isac.jobdelay=10 \
+-Dclif.isac.schedulerperiod=5 \
+-Dclif.isac.threads=50 \
+-Dfractal.provider=org.objectweb.fractal.julia.Julia \
+-Dfractal.registry.port=1234 \
+-Djulia.config=etc/julia.cfg \
+-Djulia.loader=org.objectweb.fractal.julia.loader.DynamicLoader \
+-Djava.security.policy=etc/java.policy \
+-Djava.util.logging.config.file=etc/javalog.props \
+-Xms128m -Xmx256m \
+-server
