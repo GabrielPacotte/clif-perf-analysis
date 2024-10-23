@@ -3,9 +3,9 @@
 
 ## Introduction
 
-Ce repo git regroupe les fichiers nécessaire à la reproduction des résultats obtenus pour un TP d'école d'ingénieur Ensimag en "Test des Systèmes Logiciel".
+Ce repo git regroupe les fichiers nécessaires à la reproduction des résultats obtenus pour un TP d'école d'ingénieur Ensimag en "Test des Systèmes Logiciel".
 
-> Ces fichiers correspondent à du prototypage, et ne sont absolument pas destiné à de la production.
+> Ces fichiers correspondent à du prototypage, et ne sont absolument pas destinés à de la production.
 
 ## Reproduction
 
